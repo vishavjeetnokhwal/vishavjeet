@@ -1,0 +1,59 @@
+<% include ../headfoot/header %>
+<div class="ui main text container">
+
+  <%if(article.length<1){%>
+
+<h1>There is No Article</h1>
+
+<div class="ui items  raised segment">
+<a href="/articles/new" class="massive ui primary button articl">
+  Add a New Article
+</a>
+</div>
+<%}else{%>
+  
+<h1>All Articles</h1>
+
+<%}%>
+
+<% article.forEach(function(article){%>
+
+
+<div class="ui items  raised segment">
+  <div class="item">
+    <div class="image">
+      <img  src="<%=article.image%>">
+    </div>
+    <div class="content">
+      <div class="header"><%= article.title %></div>
+      <div class="meta">
+        <span><%=article.date.toDateString()%></span>
+      </div>
+      <div class="description">
+        <p><%=article.desc.substring(0, 100)%>.....</p>
+      </div>
+      <div class="extra">
+      
+
+        <div class="ui left labeled  button" tabindex="0">
+              <div class="ui basic right label">
+                                <%=article.likes%>
+              </div>
+              
+              <a class="ui button likem" href="/articles/<%=article._id%>" >
+                                Likes
+              </a>
+        </div>
+
+    
+       <a class="mini ui primary button" href="/articles/<%=article._id%>">Read More</a>        
+      </div>
+    </div>
+  </div>
+ </div>
+
+
+
+
+<%});%>
+<% include ../headfoot/footer %>

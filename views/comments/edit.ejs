@@ -1,0 +1,24 @@
+<% include ../headfoot/header %>
+
+<div class="ui segment text  container">
+	<div class="ui large header">Edit Comment</div>
+<hr>
+	<form action="/articles/<%=article_id%>/comment/<%=Comment._id%>?_method=PUT" method="POST" class="ui form">
+
+<div class="field">
+
+   	 <label>Text</label>
+     <textarea class="textarea" rows="5" name="comment[content]" autofocus><%=Comment.content%></textarea>
+</div>
+
+
+     <input type="submit" value="Update" class="ui primary button">
+  
+  	
+
+
+</form>
+</div>
+</div>
+
+<% include ../headfoot/footer %>

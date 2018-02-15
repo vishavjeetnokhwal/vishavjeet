@@ -1,0 +1,38 @@
+<% include ../headfoot/header %>
+
+<div class="ui centered card">
+  <div class="ui huge centered header">  
+  <%=user.name%>
+  <hr>
+</div>
+    <div class="image">
+      <img  src="<%=user.image%>">
+    </div>
+    <div class="content">
+      <a class="header"><%=user.name%></a>
+      <div class="meta">
+        <span class="date">Joined on <%=user.date.toDateString()%></span>
+      </div>
+      <div class="description">
+         <p>Username : <%=user.username%></p>
+         <p>City : <%=user.city%></p>
+         <p>D.O.B.: <%=user.dateOfBirth%></p>
+         <p>Phone : <%=user.phone%></p>
+         <p>Activation Status : <%if(user.activated){%>
+         <span style="color: green" >Activated</span>
+
+        <%}else{%>
+        <span style="color: red" >Panding</span>
+        <%}%>
+      </p>
+
+
+      </div>
+    </div>
+    <div class="extra content">
+      
+    </div>
+  </div>
+
+
+<% include ../headfoot/footer %>

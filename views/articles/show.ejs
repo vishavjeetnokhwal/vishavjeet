@@ -1,0 +1,83 @@
+<% include ../headfoot/header %>
+
+<div class="ui main text container">
+
+<div class="ui raised segment">
+
+<div class="ui huge centered header"><%=article.title%></div>
+<img class="ui centered rounded large image" src="<%=article.image%>">
+<h4><%=article.date.toDateString()%>   | Created By <span class="userspan"><%= article.author.name%></span></h4>
+<p ><%=article.desc%></p>
+<br>
+<br>
+
+<form  class="like" action="/articles/<%=article._id%>" method="POST" >
+	
+<div class="ui left labeled  button" tabindex="0">
+              <div class="ui basic right label">
+                                <%=article.likes%>
+              </div>
+              
+              <button class="ui button likem">
+                                Like
+              </button>
+</div>
+</form>
+
+<%if(currentUser &&( article.author.id.equals(currentUser._id) || currentUser.isAdmin===true) ){%>
+
+
+
+<form id="delete" action="/articles/<%=article.id%>?_method=DELETE" method="POST">
+	<button class="ui mini red button article">Delete</button>
+</form>
+<a href="/articles/<%=article.id%>/edit" class="ui mini green button article">Edit</a>
+<%}%>
+
+<% article.comments.forEach(function(comment){ %>
+	
+
+	<hr>
+	<p><strong><%=comment.author.name%></strong>-<%= comment.content %></p>
+
+<div class="comment">
+<%if(currentUser && (comment.author.id.equals(currentUser._id)|| currentUser.isAdmin===true)){%>
+
+
+
+
+
+
+<a class="mini ui green button"href="/articles/<%=article._id%>/comment/<%=comment._id%>/edit">Edit</a>
+
+<form id="deletef" action="/articles/<%=article._id%>/comment/<%=comment._id%>?_method=DELETE" method="POST">
+	<input type="submit" class="mini ui red button " value="Delete">
+</form>
+
+<%}%>
+</div>
+
+<%});%>
+<br>
+
+
+
+<hr>
+	<form action="/articles/<%=article._id%>/comment/" method="post" class="ui form">
+
+    <div class="field">
+
+     <input class="textarea" type="textarea" rows="5" name="body[content]"></textarea>
+    </div>
+
+
+
+
+     <input type="submit" value="Comment" class="ui mini primary button">
+  	
+
+
+</form>
+</div>
+</div>
+<% include ../headfoot/footer %>

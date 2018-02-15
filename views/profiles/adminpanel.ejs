@@ -1,0 +1,98 @@
+<% include ../headfoot/header %>
+
+
+<div class="ui main text container">
+<div class="ui raised segment">
+
+<div class="ui huge centered header">Admin Pannel</div>
+<hr >
+
+<div class="ui items">
+  <div class="item">
+    <div class="image">
+      <img src="<%=currentUser.image%>">
+    </div>
+    <div class="content">
+      <a class="header" href="/admin"><%=currentUser.name%></a>
+      <div class="meta">
+        <span>Description</span>
+      </div>
+      <div class="description">
+        
+         <p>Username : <%=currentUser.username%></p>
+
+         <p>City : <%=currentUser.city%></p>
+         <p>D.O.B.: <%=currentUser.dateOfBirth%></p>
+         <p>Phone : <%=currentUser.phone%></p>
+      </div>
+      <div class="extra">
+        Additional Details
+         <p>Joined On : <%=currentUser.date%></p>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<%usr.forEach(function(foundUser){%>
+
+<hr>
+  <div class="ui divided items">
+  
+
+
+  <div class="item">
+
+    <div class="ui tiny image">
+      <img src="<%=foundUser.image%>">
+    </div>
+    
+    <div class="middle aligned content">
+      
+
+
+        <label>
+      <%if(foundUser.activated){%>
+         <span class="actspang">Activated User</span>
+      <%}else{%>
+          <span class="actspanr">Not Activated Yet</span>
+      <%}%>
+
+
+  </label>
+
+<form class="acti" action="/admin/<%=foundUser._id%>" method="POST" >
+  
+  <input value="<%if(foundUser.activated){%>Deactivate<%}else{%>Activate<%}%>" class="ui mini primary button article1" type="submit">
+
+  </form>
+
+
+
+
+
+    </div>
+
+
+  </div>
+  <h4 class="monu"><%=foundUser.name%></h4>
+</div>
+	
+
+
+
+<%});%>
+
+
+
+  
+
+
+    </div>
+  </div>
+</div>
+
+
+
+<% include ../headfoot/footer %>
